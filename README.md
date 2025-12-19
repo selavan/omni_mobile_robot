@@ -51,11 +51,12 @@ ros2 launch omni_robot omni_robot_launch.py
 ### 2. Launch Individual Components
 
 #### interface with motor by "can"
+##### pub(from encoder): /motor_feedback
+##### sub(motor command): /publish_motor
 ```bash
 $ ros2 run can_motor can_motor_node
 ```
-pub(from encoder): /motor_feedback
-sub(motor command): /publish_motor
+
 
 2. #body velocity
 $ ros2 run omni_robot body_velocity_node 
