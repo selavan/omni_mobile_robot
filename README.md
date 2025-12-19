@@ -54,14 +54,16 @@ ros2 launch omni_robot omni_robot_launch.py
 - pub(from encoder): /motor_feedback
 - sub(motor command): /publish_motor
 ```bash
-$ ros2 run can_motor can_motor_node
+ros2 run can_motor can_motor_node
 ```
 
+#### 2.2. body velocity
+- pub: /publish_motor
+- sub: /cmd_vel
+```bash
+ros2 run omni_robot body_velocity_node 
+```
 
-2. #body velocity
-$ ros2 run omni_robot body_velocity_node 
-pub: /publish_motor
-sub: /cmd_vel
 
 3. #PS4, connect to PS4
 $ ros2 run ds4_driver ds4_driver_node.py
