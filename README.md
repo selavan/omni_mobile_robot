@@ -64,31 +64,35 @@ ros2 run can_motor can_motor_node
 ros2 run omni_robot body_velocity_node 
 ```
 
+#### 2.3. PS4 Controller
+- pub: /raw_report
+```bash
+ros2 run ds4_driver ds4_driver_node.py
+```
 
-3. #PS4, connect to PS4
-$ ros2 run ds4_driver ds4_driver_node.py
-pub: /raw_report
+#### 2.4. Teleoperation 
+- pub: /cmd_vel
+- sub: /raw_report
+```bash
+ros2 run ds4_teleop controller_node
+```
 
-4. #teleop
-$ ros2 run ds4_teleop controller_node 
-sub: /raw_report
-pub: /cmd_vel
+#### 2.5. LiDAR 
+- pub:/scan
+```bash
+ros2 launch rtf_lds_driver hlds_laser.launch.py
+```
 
-5. #lidar
-$ ros2 launch rtf_lds_driver hlds_laser.launch.py
-pub:/scan
-
-6. #imu
+#### 2.6. IMU
+- pub: imu/data_raw
+- pub: imu/mag
+```bash
 $ ros2 run hfi_a9 hfi_a9_node
-pub: imu/data_raw
-pub: imu/mag
+```
 
-7. #odom
-$ ros2 run omni_robot odom_node
-pub: /odom
-sub: /motor_feedback, /yaw_oem
-
-8. #camera
-
-#launch all node
-$ ros2 launch omni_robot omni_robot_launch.y
+#### 2.7. odom
+- pub: /odom
+- sub: /motor_feedback, /yaw_oem
+```bash
+ros2 run omni_robot odom_node
+```
