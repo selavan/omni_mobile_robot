@@ -1,0 +1,39 @@
+1. #interface with motor by "can"
+$ ros2 run can_motor can_motor_node
+pub(from encoder): /motor_feedback
+sub(motor command): /publish_motor
+
+2. #body velocity
+$ ros2 run omni_robot body_velocity_node 
+pub: /publish_motor
+sub: /cmd_vel
+
+3. #PS4, connect to PS4
+$ ros2 run ds4_driver ds4_driver_node.py
+pub: /raw_report
+
+4. #teleop
+$ ros2 run ds4_teleop controller_node 
+sub: /raw_report
+pub: /cmd_vel
+
+5. #lidar
+$ ros2 launch rtf_lds_driver hlds_laser.launch.py
+pub:/scan
+
+6. #imu
+$ ros2 run hfi_a9 hfi_a9_node
+pub: imu/data_raw
+pub: imu/mag
+
+7. #odom
+$ ros2 run omni_robot odom_node
+pub: /odom
+sub: /motor_feedback, /yaw_oem
+
+8. #camera
+
+#launch all node
+$ ros2 launch omni_robot omni_robot_launch.y
+
+# omni_mobile_robot

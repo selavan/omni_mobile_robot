@@ -1,0 +1,392 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!-- <xacro:property name="chassis_length" value="0.335"/>
+    <xacro:property name="chassis_width" value="0.265"/>
+    <xacro:property name="chassis_height" value="0.138"/>
+    <xacro:property name="chassis_mass" value="1.0"/>
+    <xacro:property name="wheel_radius" value="0.033"/>
+    <xacro:property name="wheel_thickness" value="0.026"/>
+    <xacro:property name="wheel_mass" value="0.05"/>
+    <xacro:property name="wheel_offset_x" value="0.226"/>
+    <xacro:property name="wheel_offset_y" value="0.1485"/>
+    <xacro:property name="wheel_offset_z" value="0.01"/>
+    <xacro:property name="caster_wheel_radius" value="0.01"/>
+    <xacro:property name="caster_wheel_mass" value="0.01"/>
+    <xacro:property name="caster_wheel_offset_x" value="0.075"/>
+    <xacro:property name="caster_wheel_offset_z" value="${wheel_offset_z - wheel_radius + caster_wheel_radius}"/> -->
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.168941119201691 0.00293699995115118 0.309676102260391" rpy="0 0 0" />
+      <mass value="5.09472446197291" />
+      <inertia
+        ixx="1.01362205028955"
+        ixy="-2.85959367357677E-05"
+        ixz="0.14627068918848"
+        iyy="0.977947360800656"
+        iyz="1.41502121723081E-09"
+        izz="0.374147086860137" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/base_link.STL" scale="0.001 0.001 0.001"/>
+          <!-- filename="file://$(find AMR_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/> -->
+
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/base_link.STL" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rear_left_link">
+    <inertial>
+      <origin
+        xyz="0 -2.77555756156289E-17 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.30159289474462" />
+      <inertia
+        ixx="0.000387044214922263"
+        ixy="-3.80467942865772E-20"
+        ixz="1.60866540289696E-35"
+        iyy="0.000753982236861551"
+        iyz="4.23174193314019E-37"
+        izz="0.000387044214922263" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/rear_left_link.STL" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/rear_left_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_left_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.2 -0.02"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_left_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      effort="15"
+      velocity="15" />
+  </joint>
+  <link
+    name="rear_right_link">
+    <inertial>
+      <origin
+        xyz="0 2.77555756156289E-17 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.30159289474462" />
+      <inertia
+        ixx="0.000387044214922263"
+        ixy="1.33577016212533E-19"
+        ixz="-5.32037942268733E-37"
+        iyy="0.000753982236861551"
+        iyz="-5.78563625795345E-37"
+        izz="0.000387044214922263" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/rear_right_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+           filename="file://$(find ros_foxy)/mesh/rear_right_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_right_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.2 -0.02"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_right_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="15"
+      velocity="15" />
+  </joint>
+  <link
+    name="front_left_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.30159289474462" />
+      <inertia
+        ixx="0.000387044214922263"
+        ixy="-3.80467942865772E-20"
+        ixz="1.60866540289696E-35"
+        iyy="0.000753982236861551"
+        iyz="4.23174193314021E-37"
+        izz="0.000387044214922263" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/front_left_link.STL" scale="0.001 0.001 0.001"/>
+           
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/front_left_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.36566 0.2 -0.02"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_left_link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      effort="15"
+      velocity="15" />
+  </joint>
+  <link
+    name="front_right_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.30159289474462" />
+      <inertia
+        ixx="0.000387044214922263"
+        ixy="-3.80467942865772E-20"
+        ixz="1.60866540289696E-35"
+        iyy="0.000753982236861551"
+        iyz="3.94892633479361E-37"
+        izz="0.000387044214922263" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/front_right_link.STL" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/front_right_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_joint"
+    type="continuous">
+    <origin
+      xyz="0.36566 -0.2 -0.02"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_right_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="15"
+      velocity="15" />
+  </joint>
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="-0.0074290441733893 9.24567465299055E-10 -0.0169147007895237"
+        rpy="0 0 0" />
+      <mass
+        value="0.229160261121681" />
+      <inertia
+        ixx="0.000208944155511789"
+        ixy="1.30509407762921E-12"
+        ixz="-1.13065684498391E-06"
+        iyy="0.000213352225586718"
+        iyz="-4.19240967763704E-12"
+        izz="0.000112442330724859" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/laser_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/laser_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0.46029 0 0.15775"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="-0.00671854201515454 -1.06281777678558E-07 0.000966339550162953"
+        rpy="0 0 0" />
+      <mass
+        value="0.0470288707068897" />
+      <inertia
+        ixx="3.37748134686876E-05"
+        ixy="3.09228399625322E-11"
+        ixz="8.44203479212471E-08"
+        iyy="4.39178954043211E-06"
+        iyz="-2.65874618424396E-12"
+        izz="3.29793928553019E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+           filename="file://$(find ros_foxy)/mesh/camera_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find ros_foxy)/mesh/camera_link.STL" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.51525 0 0.1165"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+</robot>

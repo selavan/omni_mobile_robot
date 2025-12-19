@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/soubun/Mobile_Robot_ws/install/ds4_driver_msgs/include/**",
+        "/home/soubun/Mobile_Robot_ws/install/custom_messages/include/**",
+        "/home/soubun/realsense_ws/install/realsense2_camera/include/**",
+        "/home/soubun/realsense_ws/install/realsense2_camera_msgs/include/**",
+        "/opt/ros/foxy/include/**",
+        "/home/soubun/mobile_robot_wS/src/custom_messages/include/**",
+        "/home/soubun/mobile_robot_wS/src/omni_robot_description/include/**",
+        "/home/soubun/mobile_robot_wS/src/omni_robot_navigation/include/**",
+        "/home/soubun/mobile_robot_wS/src/urg_node2/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

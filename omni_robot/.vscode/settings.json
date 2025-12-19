@@ -1,0 +1,32 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/soubun/mobile_robot_ws/install/omni_robot/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/my_package/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/hfi_a9/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/ds4_teleop/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/ds4_driver/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/ds4_driver_msgs/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_motor/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_imu/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_bus/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/auto_robot/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/custom_messages/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_due/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/soubun/mobile_robot_ws/install/omni_robot/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/my_package/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/hfi_a9/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/ds4_teleop/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/ds4_driver/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/ds4_driver_msgs/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_motor/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_imu/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_bus/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/auto_robot/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/custom_messages/lib/python3.8/site-packages",
+        "/home/soubun/mobile_robot_ws/install/can_due/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages"
+    ]
+}

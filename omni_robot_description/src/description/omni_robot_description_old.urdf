@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<robot name="omni_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Define robot constants -->
+  <xacro:property name="base_height" value="0.05"/>
+  <xacro:property name="base_radius" value="0.25"/>
+  <xacro:property name="lidar_support_radius" value="0.02"/>
+  <xacro:property name="lidar_support_height" value="0.1"/>
+  <xacro:property name="lidar_radius" value="0.025"/>
+  <xacro:property name="lidar_height" value="0.025"/>
+
+  <xacro:property name="wheel_radius" value="0.075"/>
+  <xacro:property name="wheel_width" value="0.03"/>
+  
+  <xacro:property name="base_mass" value="1"/>
+  <xacro:property name="lidar_support_mass" value="0.05"/>
+  <xacro:property name="lidar_mass" value="0.2"/>
+  <xacro:property name="wheel_mass" value="0.15"/>
+  
+  <link name="dummy_root">
+  </link>
+
+  <!-- Fixed joint connecting dummy root to the base link -->
+  <joint name="dummy_joint" type="fixed">
+    <parent link="dummy_root"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  
+    <!-- Robot Base -->
+  <link name="base_link">
+    <collision>
+    <geometry>
+      <cylinder radius="${base_radius}" length="${base_height}"/>
+    </geometry>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </collision>
+  
+    <inertial>
+      <mass value="${base_mass}"/>
+      <inertia ixx="${base_mass/12 * (3*base_radius*base_radius + base_height*base_height)}" 
+              ixy="0.0" ixz="0.0" iyz="0.0"
+              iyy="${base_mass/12 * (3*base_radius*base_radius + base_height*base_height)}" 
+              izz="${base_mass/2 * base_radius*base_radius}"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <cylinder radius="${base_radius}" length="${base_height}"/>
+      </geometry>
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+    <!-- Robot Footprint -->
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0.0 0.0 ${-(wheel_radius)}" rpy="0 0 0"/>
+  </joint>
+  
+  <link name="lidar_support">
+    <inertial>
+      <mass value="${lidar_support_mass}"/>
+      <inertia ixx="${lidar_support_mass/12 * (3*lidar_support_radius*lidar_support_radius + lidar_support_height*lidar_support_height)}" 
+              ixy="0.0" ixz="0.0" iyz="0.0"
+              iyy="${lidar_support_mass/12 * (3*lidar_support_radius*lidar_support_radius + lidar_support_height*lidar_support_height)}" 
+              izz="${lidar_support_mass/2 * lidar_support_radius*lidar_support_radius}"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <cylinder radius="${lidar_support_radius}" length="${lidar_support_height}"/> <!-- Adjust radius and length as needed -->
+      </geometry>
+      <material name="Black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+  
+  <link name="laser">
+    <inertial>
+      <mass value="${lidar_mass}"/>
+      <inertia ixx="${lidar_mass/12 * (3*lidar_radius*lidar_radius + lidar_height*lidar_height)}" 
+              ixy="0.0" ixz="0.0" iyz="0.0"
+              iyy="${lidar_mass/12 * (3*lidar_radius*lidar_radius + lidar_height*lidar_height)}" 
+              izz="${lidar_mass/2 * lidar_radius*lidar_radius}"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+      </geometry>
+      <material name="Red">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="lidar_support_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_support"/>
+    <origin xyz="0.0 0.0 ${base_height/2}" rpy="0 0 0"/>
+  </joint>
+  
+  <joint name="laser_joint" type="fixed">
+    <parent link="lidar_support"/>
+    <child link="laser"/>
+    <origin xyz="0.0 0.0 ${lidar_support_height/2+lidar_height/2}" rpy="0 0 0"/>
+  </joint>
+  
+    <!-- Wheels -->
+  <xacro:macro name="wheel" params="prefix angle">
+    <link name="${prefix}_link">
+      <collision>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+    </collision>
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <inertia ixx="${wheel_mass/2 * wheel_radius*wheel_radius}" 
+                ixy="0.0" ixz="0.0" iyz="0.0"
+                iyy="${wheel_mass/2 * wheel_radius*wheel_radius}" 
+                izz="${wheel_mass/12 * (3*wheel_radius*wheel_radius + wheel_width*wheel_width)}"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="Gray">
+          <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="${prefix}_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${prefix}_link"/>
+      <origin xyz="${(base_radius+wheel_width/2)*sin(angle)} ${(base_radius+wheel_width/2)*cos(angle)} ${0}" rpy="0 0 ${angle+pi/2}"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:wheel prefix="w_1" angle="${pi/4}" />
+  <xacro:wheel prefix="w_2" angle="${3*pi/4}" />
+  <xacro:wheel prefix="w_3" angle="${5*pi/4}" />
+  <xacro:wheel prefix="w_4" angle="${7*pi/4}" />
+  
+
+</robot>

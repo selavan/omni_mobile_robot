@@ -1,0 +1,35 @@
+<package format="3">
+  <name>omni_robot</name>
+  <version>0.0.1</version>
+  <description>A simple ROS2 package for an omni-directional robot</description>
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>Apache License 2.0</license>
+
+  <!-- Build tool dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- Build and run dependencies -->
+  <depend>rclpy</depend>
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+
+  <!-- Dependencies for message and service generation -->
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <build_export_depend>rosidl_default_runtime</build_export_depend>
+
+  <!-- Linting dependencies -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <!-- Other dependencies -->
+  <exec_depend>ros2launch</exec_depend>
+
+  <!-- Declare that this is a Python package -->
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
+
