@@ -46,7 +46,9 @@ This repository contains the ROS 2 implementation for my thesis project. It focu
 To start all drivers, sensors, and the control system simultaneously:
 ```bash
 ros2 launch omni_robot omni_robot_launch.py
+```
 
+### 2. Launch Individual Components
 
 1. #interface with motor by "can"
 $ ros2 run can_motor can_motor_node
