@@ -23,7 +23,7 @@ This repository contains the ROS 2 implementation for my thesis project. It focu
 
 2. **Clone the repository:**
     ```bash
-    git clone [https://github.com/selavan/omni_mobile_robot.git](https://github.com/selavan/omni_mobile_robot.git)
+    git clone https://github.com/selavan/omni_mobile_robot.git
     ```
 
 3. **Install dependencies:**
