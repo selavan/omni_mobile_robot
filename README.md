@@ -50,8 +50,10 @@ ros2 launch omni_robot omni_robot_launch.py
 
 ### 2. Launch Individual Components
 
-1. #interface with motor by "can"
+#### interface with motor by "can"
+```bash
 $ ros2 run can_motor can_motor_node
+```
 pub(from encoder): /motor_feedback
 sub(motor command): /publish_motor
 
@@ -87,5 +89,3 @@ sub: /motor_feedback, /yaw_oem
 
 #launch all node
 $ ros2 launch omni_robot omni_robot_launch.y
-
-# omni_mobile_robot
